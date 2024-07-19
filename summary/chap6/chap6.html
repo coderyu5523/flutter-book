@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>chap6.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="chapter-06-%ED%94%84%EB%A1%9C%ED%95%84-%EC%95%B1-%EB%A7%8C%EB%93%A4%EA%B8%B0">Chapter 06 프로필 앱 만들기</h1>
+<h3 id="%EC%99%84%EC%84%B1-%ED%99%94%EB%A9%B4">완성 화면</h3>
+<p>
+  <img src="https://github.com/user-attachments/assets/71ea4a3e-444a-4ff4-8aa3-804b26045837" alt="KakaoTalk_20240719_220657182_02" width="200" height="320">
+  <img src="https://github.com/user-attachments/assets/282eed25-2228-4811-b7a5-a47af3fc965c" alt="KakaoTalk_20240719_220657182_01" width="200" height="320">
+  <img src="https://github.com/user-attachments/assets/1eb2c66d-b2fe-436b-9564-e62b0d2218d9" alt="KakaoTalk_20240719_220657182" width="200" height="320">
+</p>
+<h2 id="1-%EA%B8%B0%EB%B3%B8-%EC%84%B8%ED%8C%85">1. 기본 세팅</h2>
+<p><img src="https://github.com/user-attachments/assets/6d5bf5b4-fed4-4702-a672-bd096d341ab6" alt="6장_1"></p>
+<p>assets 폴더를 만들고 사진 파일을 넣는다.</p>
+<p><img src="https://github.com/user-attachments/assets/60974004-e5d2-4b47-925a-baa483c6de7e" alt="6장_2"></p>
+<p>pubspec.yml 을 설정하고 pub get 을 누른다.</p>
+<h2 id="2-%EC%95%B1-%ED%85%8C%EB%A7%88-%EB%A7%8C%EB%93%A4%EA%B8%B0">2. 앱 테마 만들기</h2>
+<p><strong>theme.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-keyword">const</span> MaterialColor primaryWhite = MaterialColor(
+  <span class="hljs-number">0xFFFFFFFF</span>,
+  &lt;<span class="hljs-built_in">int</span>, Color&gt;{
+    <span class="hljs-number">50</span>: Color(<span class="hljs-number">0xFFFFFFFF</span>),
+    <span class="hljs-number">100</span>: Color(<span class="hljs-number">0xFFFFFFFF</span>),
+    <span class="hljs-number">200</span>: Color(<span class="hljs-number">0xFFFFFFFF</span>),
+    <span class="hljs-number">300</span>: Color(<span class="hljs-number">0xFFFFFFFF</span>),
+    <span class="hljs-number">400</span>: Color(<span class="hljs-number">0xFFFFFFFF</span>),
+    <span class="hljs-number">500</span>: Color(<span class="hljs-number">0xFFFFFFFF</span>),
+    <span class="hljs-number">600</span>: Color(<span class="hljs-number">0xFFFFFFFF</span>),
+    <span class="hljs-number">700</span>: Color(<span class="hljs-number">0xFFFFFFFF</span>),
+    <span class="hljs-number">800</span>: Color(<span class="hljs-number">0xFFFFFFFF</span>),
+    <span class="hljs-number">900</span>: Color(<span class="hljs-number">0xFFFFFFFF</span>),
+  },
+);
+
+ThemeData theme() {
+  <span class="hljs-keyword">return</span> ThemeData(
+      primarySwatch: primaryWhite,
+      appBarTheme: AppBarTheme(
+        iconTheme: IconThemeData(color: Colors.blue), <span class="hljs-comment">//앱바 아이콘 색깔 정하기</span>
+      )
+  );
+}
+</div></code></pre>
+<aside>
+💡 앱의 전체적인 색상을 흰색으로 만든다. 기본 색이 흰색이기 때문에 흰색을 원한다면 굳이 테마를 만들 필요는 없다.
+</aside>
+<p><strong>main.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:profile_app/theme.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      debugShowCheckedModeBanner: <span class="hljs-keyword">false</span>,
+      theme: theme(),
+      home: Scaffold(
+        appBar: _buildAppBar(),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    <span class="hljs-keyword">return</span> AppBar( 
+        leading: Icon(Icons.arrow_back_ios), <span class="hljs-comment">// 앱바 아이콘 만들기</span>
+        title: Text(<span class="hljs-string">"Profile"</span>),
+        centerTitle: <span class="hljs-keyword">true</span>,
+      );
+  }
+}
+
+</div></code></pre>
+<p><img src="https://github.com/user-attachments/assets/0dad3c1a-ed79-490d-a3c0-91af4e654ca8" alt="6장_3"></p>
+<h2 id="3-drawer-%EB%A7%8C%EB%93%A4%EA%B8%B0">3. <strong>Drawer 만들기</strong></h2>
+<h3 id="31-drawer-%EB%9E%80">3.1. Drawer 란?</h3>
+<aside>
+💡 `Drawer`는 앱의 화면 왼쪽에서 나오는 메뉴를 의미한다. 주로 앱의 내비게이션 링크나 설정등을 제공한다.
+`endDrawer` 를 사용하면 화면 오른쪽에 표시된다.
+</aside>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:profile_app/theme.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      debugShowCheckedModeBanner: <span class="hljs-keyword">false</span>,
+      theme: theme(),
+      home: Scaffold(
+        appBar: _buildAppBar(),
+        endDrawer: Container(
+          width: <span class="hljs-number">200</span>,
+          height: <span class="hljs-built_in">double</span>.infinity,
+          color: Colors.blue,
+        ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    <span class="hljs-keyword">return</span> AppBar(
+      leading: Icon(Icons.arrow_back_ios),
+      title: Text(<span class="hljs-string">"Profile"</span>),
+      centerTitle: <span class="hljs-keyword">true</span>,
+    );
+  }
+}
+
+</div></code></pre>
+<p><img src="https://github.com/user-attachments/assets/87d6a695-2f93-4db8-985d-786be9c0be91" alt="6장_4">
+<img src="https://github.com/user-attachments/assets/ccc6ee60-ad1d-4771-99d7-86f0a0558b6d" alt="6장_5"></p>
+<h3 id="32-%EC%BB%A8%ED%8F%AC%EB%84%8C%ED%8A%B8-%EB%B6%84%EB%A6%AC%ED%95%98%EA%B8%B0">3.2. 컨포넌트 분리하기</h3>
+<p><strong>main.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:profile_app/theme.dart'</span>;
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_drawer.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      debugShowCheckedModeBanner: <span class="hljs-keyword">false</span>,
+      theme: theme(),
+      home: Scaffold(
+        appBar: _buildAppBar(),
+        endDrawer: ProfileDrawer(),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    <span class="hljs-keyword">return</span> AppBar(
+      leading: Icon(Icons.arrow_back_ios),
+      title: Text(<span class="hljs-string">"Profile"</span>),
+      centerTitle: <span class="hljs-keyword">true</span>,
+    );
+  }
+}
+
+</div></code></pre>
+<p><strong>profile_drawer.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileDrawer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> ProfileDrawer({
+    <span class="hljs-keyword">super</span>.key,
+  });
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> Container(
+      width: <span class="hljs-number">200</span>,
+      height: <span class="hljs-built_in">double</span>.infinity,
+      color: Colors.blue,
+    );
+  }
+}
+
+</div></code></pre>
+<h2 id="4-circleavatar-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">4. CircleAvatar 사용하기</h2>
+<h3 id="41-circleavatar-%EB%9E%80">4.1. CircleAvatar 란?</h3>
+<aside>
+💡 `CircleAvatar`는 주로 사용자의 프로필 이미지나 이니셜을 원형으로 표시하기 위해 사용되는 위젯이다. 이 위젯을 사용하면 간단하게 원형의 아바타를 만들 수 있으며, 이미지나 텍스트 등을 쉽게 적용할 수 있다.
+</aside>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:profile_app/theme.dart'</span>;
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_drawer.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      debugShowCheckedModeBanner: <span class="hljs-keyword">false</span>,
+      theme: theme(),
+      home: Scaffold(
+        appBar: _buildAppBar(),
+        endDrawer: ProfileDrawer(),
+        body: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: <span class="hljs-number">100</span>,
+                  height: <span class="hljs-number">100</span>,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage(<span class="hljs-string">"assets/avatar.png"</span>),
+                  ),
+                ),
+                Column(
+                  children: [
+                    Text(
+                      <span class="hljs-string">"GetInThere"</span>,
+                      style:
+                          TextStyle(fontSize: <span class="hljs-number">25</span>, fontWeight: FontWeight.w700),
+                    ),
+                    Text(
+                      <span class="hljs-string">"데어 프로그래밍"</span>,
+                      style: TextStyle(
+                        fontSize: <span class="hljs-number">15</span>,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    <span class="hljs-keyword">return</span> AppBar(
+      leading: Icon(Icons.arrow_back_ios),
+      title: Text(<span class="hljs-string">"Profile"</span>),
+      centerTitle: <span class="hljs-keyword">true</span>,
+    );
+  }
+}
+
+</div></code></pre>
+<p><img src="https://github.com/user-attachments/assets/b917f627-fea1-46af-a39b-910cc47e2c53" alt="6장_6"></p>
+<h2 id="42-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EB%B6%84%EB%A6%AC%ED%95%98%EA%B8%B0">4.2. 컴포넌트 분리하기</h2>
+<p><strong>main.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:profile_app/theme.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_drawer.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_header.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      debugShowCheckedModeBanner: <span class="hljs-keyword">false</span>,
+      theme: theme(),
+      home: Scaffold(
+        appBar: _buildAppBar(),
+        endDrawer: ProfileDrawer(),
+        body: Column(
+          children: [
+            ProfileHeader(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    <span class="hljs-keyword">return</span> AppBar(
+      leading: Icon(Icons.arrow_back_ios),
+      title: Text(<span class="hljs-string">"Profile"</span>),
+      centerTitle: <span class="hljs-keyword">true</span>,
+    );
+  }
+}
+</div></code></pre>
+<p><strong>components/profile_header.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">'header_avatar.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'header_profile.dart'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileHeader</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> ProfileHeader({
+    <span class="hljs-keyword">super</span>.key,
+  });
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        HeaderAvatar(),
+        HeaderProfile(),
+      ],
+    );
+  }
+}
+
+</div></code></pre>
+<p><strong>components/header_avatar.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HeaderAvatar</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> HeaderAvatar({
+    <span class="hljs-keyword">super</span>.key,
+  });
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> SizedBox(
+      width: <span class="hljs-number">100</span>,
+      height: <span class="hljs-number">100</span>,
+      child: CircleAvatar(
+        backgroundImage: AssetImage(<span class="hljs-string">"assets/avatar.png"</span>),
+      ),
+    );
+  }
+}
+
+</div></code></pre>
+<p><strong>components/header_profile.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HeaderProfile</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> HeaderProfile({
+    <span class="hljs-keyword">super</span>.key,
+  });
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> Column(
+      children: [
+        Text(
+          <span class="hljs-string">"GetInThere"</span>,
+          style:
+          TextStyle(fontSize: <span class="hljs-number">25</span>, fontWeight: FontWeight.w700),
+        ),
+        Text(
+          <span class="hljs-string">"데어 프로그래밍"</span>,
+          style: TextStyle(
+            fontSize: <span class="hljs-number">15</span>,
+          ),
+        ),
+      ],
+    );
+  }
+}
+</div></code></pre>
+<h2 id="5-countinfo-%EB%A7%8C%EB%93%A4%EA%B8%B0">5. count_info 만들기</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:profile_app/theme.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_drawer.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_header.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      debugShowCheckedModeBanner: <span class="hljs-keyword">false</span>,
+      theme: theme(),
+      home: Scaffold(
+        appBar: _buildAppBar(),
+        endDrawer: ProfileDrawer(),
+        body: Column(
+          children: [
+            ProfileHeader(),
+            Row(
+              children: [
+                Column(
+                  children: [
+                    Text(
+                      <span class="hljs-string">"50"</span>,
+                      style: TextStyle(fontSize: <span class="hljs-number">15</span>),
+                    ),
+                    Text(
+                      <span class="hljs-string">"Posts"</span>,
+                      style: TextStyle(fontSize: <span class="hljs-number">15</span>),
+                    ),
+                  ],
+                ),
+              Container(
+                width: <span class="hljs-number">2</span>,height: <span class="hljs-number">60</span>,color: Colors.blue,
+              ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    <span class="hljs-keyword">return</span> AppBar(
+      leading: Icon(Icons.arrow_back_ios),
+      title: Text(<span class="hljs-string">"Profile"</span>),
+      centerTitle: <span class="hljs-keyword">true</span>,
+    );
+  }
+}
+
+</div></code></pre>
+<p><img src="https://github.com/user-attachments/assets/71937751-4552-46fe-b91f-06e8112e8abf" alt="6장_7"></p>
+<h3 id="52-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EB%B6%84%EB%A6%AC-%EB%B3%80%EC%88%98%ED%99%94">5.2. 컴포넌트 분리, 변수화</h3>
+<p><strong>components/count_info.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CountInfo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">final</span> countNumber ;
+  <span class="hljs-keyword">final</span> countMenu ;
+  
+  CountInfo({required <span class="hljs-keyword">this</span>.countNumber,required <span class="hljs-keyword">this</span>.countMenu});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> Column(
+      children: [
+        Text(
+          countNumber,
+          style: TextStyle(fontSize: <span class="hljs-number">15</span>),
+        ),
+        SizedBox(height: <span class="hljs-number">2</span>),
+        Text(
+          countMenu,
+          style: TextStyle(fontSize: <span class="hljs-number">15</span>),
+        ),
+      ],
+    );
+  }
+}
+
+</div></code></pre>
+<p><strong>components/count_line.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CountLine</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> CountLine({
+    <span class="hljs-keyword">super</span>.key,
+  });
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> Container(
+      width: <span class="hljs-number">2</span>,height: <span class="hljs-number">60</span>,color: Colors.blue,
+    );
+  }
+}
+
+</div></code></pre>
+<p><strong>profile_count_info.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">'count_info.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'count_line.dart'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileCountInfo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> ProfileCountInfo({
+    <span class="hljs-keyword">super</span>.key,
+  });
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> Padding(
+      padding: <span class="hljs-keyword">const</span> EdgeInsets.only(top: <span class="hljs-number">20</span>),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          CountInfo(countNumber: <span class="hljs-string">"50"</span>,countMenu: <span class="hljs-string">"Posts"</span>,),
+          CountLine(),
+          CountInfo(countNumber: <span class="hljs-string">"10"</span>,countMenu: <span class="hljs-string">"Likes"</span>,),
+          CountLine(),
+          CountInfo(countNumber: <span class="hljs-string">"3"</span>,countMenu: <span class="hljs-string">"Share"</span>,),
+        ],
+      ),
+    );
+  }
+}
+
+</div></code></pre>
+<p><strong>main.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:profile_app/theme.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/count_info.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/count_line.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_count_info.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_drawer.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_header.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      debugShowCheckedModeBanner: <span class="hljs-keyword">false</span>,
+      theme: theme(),
+      home: Scaffold(
+        appBar: _buildAppBar(),
+        endDrawer: ProfileDrawer(),
+        body: Column(
+          children: [
+            ProfileHeader(),
+            ProfileCountInfo(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    <span class="hljs-keyword">return</span> AppBar(
+      leading: Icon(Icons.arrow_back_ios),
+      title: Text(<span class="hljs-string">"Profile"</span>),
+      centerTitle: <span class="hljs-keyword">true</span>,
+    );
+  }
+}
+
+</div></code></pre>
+<p><img src="https://github.com/user-attachments/assets/fe094e8a-a58b-46b5-980a-f6e5411d1be2" alt="6장_8"></p>
+<h2 id="6-inkwell-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">6. InkWell 사용하기</h2>
+<h3 id="61-inkwell-%EB%9E%80">6.1. InkWell 란?</h3>
+<aside>
+💡 `InkWell` 위젯은 사용자의 터치에 반응하여 물결 효과를 생성하고, 탭 이벤트를 처리할 수 있어서 버튼처럼 사용할 수 있다.
+</aside>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:profile_app/theme.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_count_info.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_drawer.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_header.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      debugShowCheckedModeBanner: <span class="hljs-keyword">false</span>,
+      theme: theme(),
+      home: Scaffold(
+        appBar: _buildAppBar(),
+        endDrawer: ProfileDrawer(),
+        body: Column(
+            children: [
+            ProfileHeader(),
+        ProfileCountInfo(),
+        Padding(
+          padding: <span class="hljs-keyword">const</span> EdgeInsets.only(top: <span class="hljs-number">25</span>),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                onTap: () {  <span class="hljs-comment">// 버턴을 눌렀을 때 이벤트 실행</span>
+                  <span class="hljs-built_in">print</span>(<span class="hljs-string">"Follow 버튼 클릭"</span>);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: <span class="hljs-number">150</span>,
+                  height: <span class="hljs-number">45</span>,
+                  child: Text(
+                    <span class="hljs-string">"Follow"</span>,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(<span class="hljs-number">10</span>),
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  <span class="hljs-built_in">print</span>(<span class="hljs-string">"Message 버튼 클릭"</span>);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: <span class="hljs-number">150</span>,
+                  height: <span class="hljs-number">45</span>,
+                  child: Text(
+                    <span class="hljs-string">"Message"</span>,
+                    style: TextStyle(color: Colors.black,),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(<span class="hljs-number">10</span>),
+                    border: Border.all(),
+                  ),
+                  ),
+                )
+
+                ],
+              ),
+        ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    <span class="hljs-keyword">return</span> AppBar(
+      leading: Icon(Icons.arrow_back_ios),
+      title: Text(<span class="hljs-string">"Profile"</span>),
+      centerTitle: <span class="hljs-keyword">true</span>,
+    );
+  }
+}
+
+</div></code></pre>
+<p><img src="https://github.com/user-attachments/assets/71e969c5-b0c2-4184-b9df-3eb95d452e68" alt="6장_9">
+<img src="https://github.com/user-attachments/assets/9d504f2f-f872-421e-8584-f67f7b3af5ba" alt="6장_10"></p>
+<p>Inkwell 버튼을 누르면 이벤트가 발생한다.</p>
+<h3 id="62-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EB%B6%84%EB%A6%AC">6.2. 컴포넌트 분리</h3>
+<p><strong>components/profile_buttons.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileButtons</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> ProfileButtons({
+    <span class="hljs-keyword">super</span>.key,
+  });
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> Padding(
+      padding: <span class="hljs-keyword">const</span> EdgeInsets.only(top: <span class="hljs-number">25</span>),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          InkWell(
+            onTap: () {
+              <span class="hljs-built_in">print</span>(<span class="hljs-string">"Follow 버튼 클릭"</span>);
+            },
+            child: Container(
+              alignment: Alignment.center,
+              width: <span class="hljs-number">150</span>,
+              height: <span class="hljs-number">45</span>,
+              child: Text(
+                <span class="hljs-string">"Follow"</span>,
+                style: TextStyle(color: Colors.white),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(<span class="hljs-number">10</span>),
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              <span class="hljs-built_in">print</span>(<span class="hljs-string">"Message 버튼 클릭"</span>);
+            },
+            child: Container(
+              alignment: Alignment.center,
+              width: <span class="hljs-number">150</span>,
+              height: <span class="hljs-number">45</span>,
+              child: Text(
+                <span class="hljs-string">"Message"</span>,
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(<span class="hljs-number">10</span>),
+                border: Border.all(),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+</div></code></pre>
+<p><strong>main.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:profile_app/theme.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_buttons.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_count_info.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_drawer.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_header.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      debugShowCheckedModeBanner: <span class="hljs-keyword">false</span>,
+      theme: theme(),
+      home: Scaffold(
+        appBar: _buildAppBar(),
+        endDrawer: ProfileDrawer(),
+        body: Column(
+          children: [
+            ProfileHeader(),
+            ProfileCountInfo(),
+            ProfileButtons(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    <span class="hljs-keyword">return</span> AppBar(
+      leading: Icon(Icons.arrow_back_ios),
+      title: Text(<span class="hljs-string">"Profile"</span>),
+      centerTitle: <span class="hljs-keyword">true</span>,
+    );
+  }
+}
+
+</div></code></pre>
+<h2 id="7-defaulttabcontroller-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">7. DefaultTabController 사용하기</h2>
+<aside>
+💡 `DefaultTabController`는 탭을 사용하여 여러 페이지를 구성할 때 사용되는 위젯이다. `DefaultTabController`를 사용하면 Flutter에서 탭 기반의 인터페이스를 쉽게 구현할 수 있다.
+</aside>
+<p><strong>main.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:profile_app/theme.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_buttons.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_count_info.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_drawer.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_header.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      debugShowCheckedModeBanner: <span class="hljs-keyword">false</span>,
+      theme: theme(),
+      home: Scaffold(
+        appBar: _buildAppBar(),
+        endDrawer: ProfileDrawer(),
+        body: Column(
+          children: [
+            ProfileHeader(),
+            ProfileCountInfo(),
+            ProfileButtons(),
+            DefaultTabController(
+              length: <span class="hljs-number">2</span>,
+              initialIndex: <span class="hljs-number">0</span>,
+              child: Column(
+                children: [
+                  TabBar(tabs: [
+                    Tab(icon:Icon(Icons.directions_car)),
+                    Tab(icon:Icon(Icons.directions_transit)),
+                  ],)
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    <span class="hljs-keyword">return</span> AppBar(
+      leading: Icon(Icons.arrow_back_ios),
+      title: Text(<span class="hljs-string">"Profile"</span>),
+      centerTitle: <span class="hljs-keyword">true</span>,
+    );
+  }
+}
+
+</div></code></pre>
+<p><img src="https://github.com/user-attachments/assets/b19bc9ec-28d7-4300-bd09-f8beee42f2cb" alt="6장_11"></p>
+<h2 id="8-tabbarview-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EB%86%92%EC%9D%B4-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0">8. <strong>TabBarView 사용하기, 높이 오류 해결</strong></h2>
+<h3 id="81-tabbarview-%EB%9E%80">8.1. <strong>TabBarView 란?</strong></h3>
+<aside>
+💡 `TabBarView`는 탭을 통해 여러 페이지를 스와이프하여 볼 수 있게 해주는 위젯이다. 주로 `TabBar`와 함께 사용되며, 사용자가 탭을 선택할 때 해당하는 페이지를 보여준다.
+</aside>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/cupertino.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/widgets.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:profile_app/theme.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_buttons.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_count_info.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_drawer.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_header.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      debugShowCheckedModeBanner: <span class="hljs-keyword">false</span>,
+      theme: theme(),
+      home: Scaffold(
+        appBar: _buildAppBar(),
+        endDrawer: ProfileDrawer(),
+        body: Column(
+          children: [
+            ProfileHeader(),
+            ProfileCountInfo(),
+            ProfileButtons(),
+            DefaultTabController(
+              length: <span class="hljs-number">2</span>,
+              initialIndex: <span class="hljs-number">0</span>,
+              child: Column(
+                children: [
+                  TabBar(
+                    tabs: [
+                      Tab(icon: Icon(Icons.directions_car)),
+                      Tab(icon: Icon(Icons.directions_transit)),
+                    ],
+                  ),
+                  TabBarView(
+                    children: [
+                      GridView.builder(
+                        gridDelegate:
+                            SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisSpacing: <span class="hljs-number">10</span>,
+                          crossAxisCount: <span class="hljs-number">3</span>,
+                          mainAxisSpacing: <span class="hljs-number">10</span>,
+                        ),
+                        itemCount: <span class="hljs-number">42</span>,
+                        itemBuilder: (context, index) {
+                          <span class="hljs-keyword">return</span> Image.network(
+                              <span class="hljs-string">"https://picsum.photos/id/<span class="hljs-subst">${index + <span class="hljs-number">1</span>}</span>/200/200"</span>);
+                        },
+                      ),
+                      Container(
+                        color: Colors.red,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    <span class="hljs-keyword">return</span> AppBar(
+      leading: Icon(Icons.arrow_back_ios),
+      title: Text(<span class="hljs-string">"Profile"</span>),
+      centerTitle: <span class="hljs-keyword">true</span>,
+    );
+  }
+}
+
+</div></code></pre>
+<h3 id="82-horizontal-viewport-was-given-unbounded-height-%EC%98%A4%EB%A5%98">8.2. <strong>Horizontal viewport was given unbounded height  오류</strong></h3>
+<aside>
+💡 해당 코드를 실행하면 위와 같은 오류가 발생한다. 이는 부모 Column 내부에 무제한의 높이를 가질 수 있는 GridView나 ListView,TabBarView 등이 있을 때 발생한다. 이때 `Expanded` 위젯으로 자식 위젯을 감싼다. `Expanded` 위젯은 가능한 모든 공간을 차지하도록 자식 위젯을 확장시킨다.
+</aside>
+<p><img src="https://github.com/user-attachments/assets/d349f5be-de9b-4167-aae4-c563a06ac82e" alt="6장_12">
+<img src="https://github.com/user-attachments/assets/5cd4adb9-f45e-46fb-adf9-d29c791f0f1d" alt="6장_13"></p>
+<h3 id="83-renderflex-children-have-non-zero-flex-but-incoming-height-constraints-are-unbounded-%EC%98%A4%EB%A5%98">8.3. RenderFlex children have non-zero flex but incoming height constraints are unbounded 오류</h3>
+<aside>
+💡 이렇게 되면 또 다른 오류가 발생한다. 이 오류는 `Column`과 같은 위젯이 자식에게 무한한 높이를 허용할 때, 그 안에 있는 `Expanded` 또는 `Flexible` 위젯이 얼마나 많은 공간을 차지해야 하는지 결정할 수 없을 때 발생한다. 
+<p><code>Column</code> 내부에서 <code>Expanded</code> 또는 <code>Flexible</code> 위젯을 사용할 때, 이들이 명확한 높이 제약을 가질 수 있도록 해야 한다. 예를 들어, <code>Column</code>을 <code>Scaffold</code>의 <code>body</code>로 직접 사용하는 경우, <code>Column</code>의 높이가 화면의 높이로 제한되므로 <code>Expanded</code> 위젯을 사용해야 한다.</p>
+</aside>
+<p><img src="https://github.com/user-attachments/assets/c8fd71a3-a0c4-48c9-95c6-8ce6503deea3" alt="6장_14"></p>
+<p><strong>main.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/cupertino.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/widgets.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:profile_app/theme.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_buttons.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_count_info.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_drawer.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'components/profile_header.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      debugShowCheckedModeBanner: <span class="hljs-keyword">false</span>,
+      theme: theme(),
+      home: Scaffold(
+        appBar: _buildAppBar(),
+        endDrawer: ProfileDrawer(),
+        body: Column(
+          children: [
+            ProfileHeader(),
+            ProfileCountInfo(),
+            ProfileButtons(),
+            Expanded(
+              child: DefaultTabController(
+                length: <span class="hljs-number">2</span>,
+                initialIndex: <span class="hljs-number">0</span>,
+                child: Column(
+                  children: [
+                    TabBar(
+                      tabs: [
+                        Tab(icon: Icon(Icons.directions_car)),
+                        Tab(icon: Icon(Icons.directions_transit)),
+                      ],
+                    ),
+                    Expanded(
+                      child: TabBarView(
+                        children: [
+                          GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisSpacing: <span class="hljs-number">10</span>,
+                              crossAxisCount: <span class="hljs-number">3</span>,
+                              mainAxisSpacing: <span class="hljs-number">10</span>,
+                            ),
+                            itemCount: <span class="hljs-number">42</span>,
+                            itemBuilder: (context, index) {
+                              <span class="hljs-keyword">return</span> Image.network(
+                                  <span class="hljs-string">"https://picsum.photos/id/<span class="hljs-subst">${index + <span class="hljs-number">1</span>}</span>/200/200"</span>);
+                            },
+                          ),
+                          Container(
+                            color: Colors.red,
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    <span class="hljs-keyword">return</span> AppBar(
+      leading: Icon(Icons.arrow_back_ios),
+      title: Text(<span class="hljs-string">"Profile"</span>),
+      centerTitle: <span class="hljs-keyword">true</span>,
+    );
+  }
+}
+
+</div></code></pre>
+<p><img src="https://github.com/user-attachments/assets/738e5ea6-722c-47ef-ada3-7f56627f928d" alt="6장_15"></p>
+<p><img src="https://github.com/user-attachments/assets/d43e842e-fd49-4bac-b908-7a9d1ced42e0" alt="6장_16"></p>
+<p>스크롤을 내리며 사진을 볼 수 있다.</p>
+<h2 id="9-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EB%B6%84%EB%A6%AC%EB%A1%9C-%EC%BD%94%EB%93%9C-%EC%A0%95%EB%A6%AC%ED%95%98%EA%B8%B0">9. 컴포넌트 분리로 코드 정리하기</h2>
+<p><strong>components/profile_tab.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfileTab</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> ProfileTab({
+    <span class="hljs-keyword">super</span>.key,
+  });
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> DefaultTabController(
+      length: <span class="hljs-number">2</span>,
+      initialIndex: <span class="hljs-number">0</span>,
+      child: Column(
+        children: [
+          _TabBar(),
+          Expanded(child: _TabBarView()),
+        ],
+      ),
+    );
+  }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">_TabBarView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> _TabBarView({
+    <span class="hljs-keyword">super</span>.key,
+  });
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> TabBarView(
+      children: [
+        GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisSpacing: <span class="hljs-number">10</span>,
+            crossAxisCount: <span class="hljs-number">3</span>,
+            mainAxisSpacing: <span class="hljs-number">10</span>,
+          ),
+          itemCount: <span class="hljs-number">42</span>,
+          itemBuilder: (context, index) {
+            <span class="hljs-keyword">return</span> Image.network(
+                <span class="hljs-string">"https://picsum.photos/id/<span class="hljs-subst">${index + <span class="hljs-number">1</span>}</span>/200/200"</span>);
+          },
+        ),
+        Container(
+          color: Colors.red,
+        )
+      ],
+    );
+  }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">_TabBar</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> _TabBar({
+    <span class="hljs-keyword">super</span>.key,
+  });
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> TabBar(
+      tabs: [
+        Tab(icon: Icon(Icons.directions_car)),
+        Tab(icon: Icon(Icons.directions_transit)),
+      ],
+    );
+  }
+}
+
+</div></code></pre>
+<p><strong>pages/profile_page.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">'../components/profile_buttons.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'../components/profile_count_info.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'../components/profile_drawer.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'../components/profile_header.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'../components/profile_tab.dart'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProfilePage</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> ProfilePage({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> Scaffold(
+      appBar: _buildAppBar(),
+      endDrawer: ProfileDrawer(),
+      body: Column(
+        children: [
+          ProfileHeader(),
+          ProfileCountInfo(),
+          ProfileButtons(),
+          Expanded(child: ProfileTab())
+        ],
+      ),
+    );
+  }
+  AppBar _buildAppBar() {
+    <span class="hljs-keyword">return</span> AppBar(
+      leading: Icon(Icons.arrow_back_ios),
+      title: Text(<span class="hljs-string">"Profile"</span>),
+      centerTitle: <span class="hljs-keyword">true</span>,
+    );
+  }
+
+}
+
+</div></code></pre>
+<p><strong>main.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/cupertino.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/widgets.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:profile_app/pages/profile_page.dart'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'package:profile_app/theme.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      debugShowCheckedModeBanner: <span class="hljs-keyword">false</span>,
+      theme: theme(),
+      home: ProfilePage(),
+    );
+  }
+
+}
+
+</div></code></pre>
+
+</body>
+</html>

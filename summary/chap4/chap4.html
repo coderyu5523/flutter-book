@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>chap4.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="chapter-04-%EC%8A%A4%ED%86%A0%EC%96%B4-%EC%95%B1-%EB%A7%8C%EB%93%A4%EA%B8%B0">Chapter 04 스토어 앱 만들기</h1>
+<h3 id="%EC%99%84%EC%84%B1-%ED%99%94%EB%A9%B4">완성 화면</h3>
+<img src="https://github.com/user-attachments/assets/ece37385-2259-4397-aaf1-5c23892e2436" width="500" height="600">
+<h2 id="1-%EA%B8%B0%EB%B3%B8-%EC%84%B8%ED%8C%85">1. 기본 세팅</h2>
+<p><img src="https://github.com/user-attachments/assets/fbec272b-b4ed-437c-8117-f752bfc0606b" alt="4장_1"></p>
+<p>assets 폴더를 만든 후 사진을 넣는다.</p>
+<p><img src="https://github.com/user-attachments/assets/0cdef3b4-a727-41bb-b155-a178000e4334" alt="4장_2"></p>
+<p>pubspec.yaml 에서 assets 를 설정 후 pub get을 누른다.</p>
+<p><strong>main.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp();
+  }
+}
+</div></code></pre>
+<aside>
+💡 플러터에서  `MaterialApp()`은 Material Design 애플리케이션을 위한 편리한 위젯으로, 특정 기능들을 제공한다. 플러터 프로젝트를 새로 만들 때 기본적으로 `MaterialApp()`을 사용하여 UI를 생성한다. Container, Scaffold, Drawer, AppBar 등의 위젯을 함께 사용한다.
+</aside>
+<h2 id="2-scaffold">2. Scaffold</h2>
+<aside>
+💡 `Scaffold`는 기본적인 Material Design의 시각적 레이아웃 구조를 구현하는 위젯이다. 앱의 기본적인 디자인 구조를 제공하며, 드로어(drawers), 바텀 시트(bottom sheets), 플로팅 액션 버튼(FloatingActionButton) 등 다양한 API를 제공한다. 이를 통해 기능적이고 반응형 앱을 쉽게 만들 수 있다.
+<hr>
+</aside>
+<ul>
+<li><strong>앱 바(AppBar): 상단에 앱 바를 추가하여 앱의 제목이나 액션 버튼을 표시할 수 있다.</strong></li>
+<li><strong>바디(Body): 앱의 주요 콘텐츠를 표시하는 영역. 다양한 위젯을 바디에 배치하여 앱의 주요 기능을 구현할 수 있다.</strong></li>
+<li><strong>플로팅 액션 버튼(FloatingActionButton): 화면에 고정된 액션 버튼을 추가하여 사용자가 중요한 작업을 쉽게 수행할 수 있도록 도와준다.</strong></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      home : Scaffold(
+        
+      );
+    );
+  }
+}
+
+</div></code></pre>
+<h2 id="3-column--row">3. Column , Row</h2>
+<aside>
+💡 `Column`과 `Row`는 레이아웃을 구성하는 핵심 위젯이다. `Column`은 자식 위젯들을 세로로 배열하고, `Row`는 자식 위젯들을 가로로 배열한다.
+</aside>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+        home: Scaffold(
+          body: SafeArea(
+            child: Column(
+              children: [
+                Text(<span class="hljs-string">"Women"</span>, style: TextStyle(fontWeight: FontWeight.bold)),
+                Spacer(),
+                Text(<span class="hljs-string">"Kids"</span>, style: TextStyle(fontWeight: FontWeight.bold)),
+                Spacer(),
+                Text(<span class="hljs-string">"Shoes"</span>,style : TextStyle(fontWeight: FontWeight.bold)),
+                Spacer(),
+                Text(<span class="hljs-string">"Women"</span>,style : TextStyle(fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
+        ),
+    );
+  }
+}
+
+</div></code></pre>
+<p><img src="https://github.com/user-attachments/assets/a7d4c950-aef5-4455-a714-67a885adb95f" alt="4장_3"></p>
+<p>Column 으로 배치하면 세로로 배치가 된다.</p>
+<p>가로 배치를 위해 Row 로 감싼다.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      home: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              Padding(  <span class="hljs-comment">// 좌우위아래 간격을 25씩 준다.`</span>
+                padding: <span class="hljs-keyword">const</span> EdgeInsets.all(<span class="hljs-number">25.0</span>),
+                child: Row(
+                  children: [
+                    Text(<span class="hljs-string">"Women"</span>, style: TextStyle(fontWeight: FontWeight.bold)),
+                    Spacer(),
+                    Text(<span class="hljs-string">"Kids"</span>, style: TextStyle(fontWeight: FontWeight.bold)),
+                    Spacer(),
+                    Text(<span class="hljs-string">"Shoes"</span>, style: TextStyle(fontWeight: FontWeight.bold)),
+                    Spacer(),
+                    Text(<span class="hljs-string">"Women"</span>, style: TextStyle(fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+</div></code></pre>
+<p><img src="https://github.com/user-attachments/assets/131cc5aa-cd9f-4f7d-9768-a539b9efb861" alt="4장_4"></p>
+<aside>
+💡 앱의 전체 위젯은 세로 배치가 되지만 메뉴 부분은 Row 를 사용해 가로 배치를 한다.
+</aside>
+<h2 id="4-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%84%A3%EA%B8%B0">4. 이미지 넣기</h2>
+<p><strong>main.darta</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      home: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              Padding(  <span class="hljs-comment">// 좌우위아래 간격을 25씩 준다.`</span>
+                padding: <span class="hljs-keyword">const</span> EdgeInsets.all(<span class="hljs-number">25.0</span>),
+                child: Row(
+                  children: [
+                    Text(<span class="hljs-string">"Women"</span>, style: TextStyle(fontWeight: FontWeight.bold)),
+                    Spacer(),
+                    Text(<span class="hljs-string">"Kids"</span>, style: TextStyle(fontWeight: FontWeight.bold)),
+                    Spacer(),
+                    Text(<span class="hljs-string">"Shoes"</span>, style: TextStyle(fontWeight: FontWeight.bold)),
+                    Spacer(),
+                    Text(<span class="hljs-string">"Women"</span>, style: TextStyle(fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ),
+              Expanded(child: Image.asset(<span class="hljs-string">"assets/bag.jpeg"</span>,fit: BoxFit.cover,)),
+              SizedBox(height: <span class="hljs-number">2</span>),<span class="hljs-comment">// 사이 간격을 위해 사용</span>
+              Expanded(child: Image.asset(<span class="hljs-string">"assets/cloth.jpeg"</span>,fit: BoxFit.cover,)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+</div></code></pre>
+<aside>
+💡 **`Expanded` :  자식 위젯이 최대 크기를 차지할 수 있도록 확장시킨다.
+Image.asset : 를 통해 이미지를 위젯으로 표현한다.
+fit: BoxFit.cover   : 이미지가 부모 위젯의 경계 내에서 가능한 한 크게, 그러나 원본 비율을 유지하면서 전체를 덮도록 조정된다. 즉, 이미지가 잘리더라도 비율을 유지하며 전체 공간을 채운다.**
+</aside>
+<hr>
+<p><img src="https://github.com/user-attachments/assets/37d7f8ac-699b-4a17-9d49-64f1386125ba" alt="4장_5"></p>
+<h2 id="5-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EB%B6%84%EB%A6%AC%ED%95%98%EA%B8%B0">5. 컴포넌트 분리하기</h2>
+<p><img src="https://github.com/user-attachments/assets/1106cc5a-cb21-4d6b-afc5-b2a7706045bf" alt="4장_6"></p>
+<p><strong>main.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">'component/store_page.dart'</span>;
+
+<span class="hljs-keyword">void</span> main() {
+  runApp(<span class="hljs-keyword">const</span> MyApp());
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> MyApp({<span class="hljs-keyword">super</span>.key});
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> MaterialApp(
+      debugShowCheckedModeBanner: <span class="hljs-keyword">false</span>, <span class="hljs-comment">// 상단의 debug 를 지운다.</span>
+      home: StorePage(),
+    );
+  }
+}
+
+</div></code></pre>
+<aside>
+💡 debugShowCheckedModeBanner 는 플러터 개발 모드에서 나타나는 개발 환경일 때 DEBUG로 실행되며 나타나는 배너이다. 릴리즈 모드에선 나타나지 않으며 속성을 false 로 설정하면 배너를 숨길 수 있다.
+</aside>
+<p><strong>component/store_page.dart</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'package:flutter/material.dart'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StorePage</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> StorePage({
+    <span class="hljs-keyword">super</span>.key,
+  });
+
+  <span class="hljs-meta">@override</span>
+  Widget build(BuildContext context) {
+    <span class="hljs-keyword">return</span> Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(  <span class="hljs-comment">// 좌우위아래 간격을 25씩 준다.`</span>
+              padding: <span class="hljs-keyword">const</span> EdgeInsets.all(<span class="hljs-number">25.0</span>),
+              child: Row(
+                children: [
+                  Text(<span class="hljs-string">"Women"</span>, style: TextStyle(fontWeight: FontWeight.bold)),
+                  Spacer(),
+                  Text(<span class="hljs-string">"Kids"</span>, style: TextStyle(fontWeight: FontWeight.bold)),
+                  Spacer(),
+                  Text(<span class="hljs-string">"Shoes"</span>, style: TextStyle(fontWeight: FontWeight.bold)),
+                  Spacer(),
+                  Text(<span class="hljs-string">"Women"</span>, style: TextStyle(fontWeight: FontWeight.bold)),
+                ],
+              ),
+            ),
+            Expanded(child: Image.asset(<span class="hljs-string">"assets/bag.jpeg"</span>,fit: BoxFit.cover,)),
+            SizedBox(height: <span class="hljs-number">2</span>),<span class="hljs-comment">// 사이 간격을 위해 사용</span>
+            Expanded(child: Image.asset(<span class="hljs-string">"assets/cloth.jpeg"</span>,fit: BoxFit.cover,)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+</div></code></pre>
+<aside>
+💡 컴포넌트를 기능별로 나누면 가독성이 높아지고 유지보수가 편해진다.
+</aside>
+<br>
+<p><img src="https://github.com/user-attachments/assets/ece37385-2259-4397-aaf1-5c23892e2436" alt="4장_7"></p>
+
+</body>
+</html>
