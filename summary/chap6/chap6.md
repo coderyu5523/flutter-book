@@ -221,4 +221,6 @@ SliverList는 속성은 다음과 같다.
 </aside>
 <br>
 
+![alt text](Screenshot_11.png)
 
+NestedScrollView 를 사용하면 탭바를 제외한 부분이 스크롤을 공유하게 되어 UX가 좋아진다.
