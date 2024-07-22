@@ -501,30 +501,36 @@ SliverGridDelegateWithFixedCrossAxisCount 주요 속성은 다음과 같다.
 </aside>
 <br>
 <p><img src="image-19.png" alt="alt text"></p>
-<p><img src="Screenshot_30.png" alt="alt text"></p>
-<h2 id="7-imagenetwork-%EC%9C%84%EC%A0%AF">7. Image.network 위젯</h2>
+<h2 id="7-nestedscrollview">7. NestedScrollView</h2>
 <aside>
-💡 Image.network는 Flutter에서 네트워크 상의 이미지를 로드하여 표시하는 데 사용되는 위젯이다. 이 위젯을 사용하면 웹상의 URL을 통해 이미지를 로드하고, Flutter 애플리케이션 내에서 해당 이미지를 쉽게 표시할 수 있다. Image.network는 네트워크 요청을 통해 이미지를 가져오므로, 이미지가 로드될 때까지 약간의 지연이 발생할 수 있다.
+💡 NestedScrollView는 안드로이드 개발에서 사용되는 스크롤 뷰의 일종으로, 주로 하위 뷰가 서로 중첩된 경우에 사용한다. 이 뷰는 ScrollView와 비슷하지만, 중첩된 스크롤 뷰와 잘 작동하도록 설계되어있다. 이를 통해 사용자 인터페이스에서 스크롤 가능한 자식 뷰들이 중첩된 경우에도 부드러운 스크롤을 제공한다.
 <br>
-Image.network의 주요 속성은 다음과 같다.
+NestedScrollView의 속성은 다음과 같다.
 <ol>
-<li>src: 네트워크 이미지의 URL을 지정한다.</li>
-<li>width: 이미지의 너비를 설정한다.</li>
-<li>height: 이미지의 높이를 설정한다.</li>
-<li>fit: 이미지를 컨테이너 내에 어떻게 맞출지 설정합니다. 예를 들어, BoxFit.cover, BoxFit.contain 등을 사용할 수 있다.</li>
-<li>alignment: 이미지의 정렬을 설정한다.</li>
-<li>loadingBuilder: 이미지를 로드하는 동안 커스텀 로딩 위젯을 표시하는 데 사용된다.</li>
-<li>errorBuilder: 이미지 로드 중 오류가 발생했을 때 대체 위젯을 표시하는 데 사용된다.</li>
+<li>controller: 스크롤을 제어하는 데 사용.</li>
+<li>scrollDirection: 스크롤 방향을 설정.</li>
+<li>reverse: 스크롤 방향을 반대로 설정.</li>
+<li>physics: 스크롤 동작을 정의.</li>
+<li>headerSliverBuilder: 슬리버 헤더를 빌드.</li>
+<li>body: 스크롤 가능한 본문 위젯.</li>
+<li>dragStartBehavior: 드래그 시작 동작을 정의.</li>
+<li>floatHeaderSlivers: 슬리버 헤더를 떠 있도록 설정.</li>
 </ol>
 </aside>
 <br>
-<p>https://picsum.photos/  사이트의 이미지를 가져오도록 한다.</p>
-<p>https://picsum.photos/id/1/200/200</p>
-<p><img src="1-200x200.jpg" alt="alt text"></p>
-<p>해당 주소를 브라우저에 입력하면 위와 같은 사진이 출력된다. id 값을 변수로 만들어 서버에서 데이터를 받아오자.</p>
-<p><img src="image-20.png" alt="alt text"></p>
-<p>GridView.builder 위젯을 사용해 동적으로 데이터를 받아올 수 있다. itemCount 를 사용해 데이터 개수를 지정할 수 있다.</p>
-<p><img src="image-21.png" alt="alt text"></p>
+<p><img src="image-22.png" alt="alt text"></p>
+<aside>
+💡 SliverList는 Flutter에서 Sliver 위젯 중 하나로, 스크롤 가능한 영역 안에 여러 개의 자식 위젯을 배치하는 데 사용한다. SliverList는 주로 CustomScrollView나 NestedScrollView와 함께 사용되어 유연하고 성능이 좋은 스크롤 인터페이스를 만들 수 있다.
+<br>
+SliverList는 속성은 다음과 같다.
+<ol>
+<li>SliverChildListDelegate: 고정된 리스트를 처리하는 데 사용된다.</li>
+<li>SliverChildBuilderDelegate: 동적으로 생성된 리스트를 처리하는 데 사용된다.</li>
+</ol>
+</aside>
+<br>
+<p><img src="Screenshot_11.png" alt="alt text"></p>
+<p>NestedScrollView 를 사용하면 탭바를 제외한 부분이 스크롤을 공유하게 되어 UX가 좋아진다.</p>
 
 </body>
 </html>

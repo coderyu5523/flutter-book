@@ -174,7 +174,7 @@ GridView의 주요 생성자는 다음과 같다.
 <aside>
 💡 SliverGridDelegateWithFixedCrossAxisCount는 Flutter에서 그리드 레이아웃을 정의할 때 사용되는 SliverGridDelegate의 서브클래스 중 하나이다. 이 클래스는 고정된 열의 개수를 사용하여 그리드 레이아웃을 배치한다. 이를 통해 각 항목의 크기를 자동으로 계산하고, 그리드의 모양을 결정할 수 있다.
 
-
+<br>
 SliverGridDelegateWithFixedCrossAxisCount 주요 속성은 다음과 같다.
 
 1. crossAxisCount: 그리드의 열 개수를 설정한다.
@@ -185,3 +185,40 @@ SliverGridDelegateWithFixedCrossAxisCount 주요 속성은 다음과 같다.
 <br>
 
 ![alt text](image-19.png)
+
+## 7. NestedScrollView
+
+<aside>
+💡 NestedScrollView는 안드로이드 개발에서 사용되는 스크롤 뷰의 일종으로, 주로 하위 뷰가 서로 중첩된 경우에 사용한다. 이 뷰는 ScrollView와 비슷하지만, 중첩된 스크롤 뷰와 잘 작동하도록 설계되어있다. 이를 통해 사용자 인터페이스에서 스크롤 가능한 자식 뷰들이 중첩된 경우에도 부드러운 스크롤을 제공한다.
+
+<br>
+NestedScrollView의 속성은 다음과 같다.
+
+1. controller: 스크롤을 제어하는 데 사용.
+2. scrollDirection: 스크롤 방향을 설정.
+3. reverse: 스크롤 방향을 반대로 설정.
+4. physics: 스크롤 동작을 정의.
+5. headerSliverBuilder: 슬리버 헤더를 빌드.
+6. body: 스크롤 가능한 본문 위젯.
+7. dragStartBehavior: 드래그 시작 동작을 정의.
+8. floatHeaderSlivers: 슬리버 헤더를 떠 있도록 설정.
+
+
+</aside>
+<br>
+
+![alt text](image-22.png)
+
+<aside>
+💡 SliverList는 Flutter에서 Sliver 위젯 중 하나로, 스크롤 가능한 영역 안에 여러 개의 자식 위젯을 배치하는 데 사용한다. SliverList는 주로 CustomScrollView나 NestedScrollView와 함께 사용되어 유연하고 성능이 좋은 스크롤 인터페이스를 만들 수 있다.
+
+<br>
+SliverList는 속성은 다음과 같다.
+
+1. SliverChildListDelegate: 고정된 리스트를 처리하는 데 사용된다.
+2. SliverChildBuilderDelegate: 동적으로 생성된 리스트를 처리하는 데 사용된다.
+
+</aside>
+<br>
+
+
