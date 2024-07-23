@@ -2,8 +2,8 @@
 
 ### 완성 화면
 
-<img src="https://github.com/user-attachments/assets/4d9aee6b-757f-4982-8475-7fae805eaebf" width="350" height="600">
-
+<img src="https://github.com/user-attachments/assets/4d9aee6b-757f-4982-8475-7fae805eaebf" width="320" height="600">
+<img src="https://github.com/user-attachments/assets/b54bacb2-1978-4139-81b6-8e950f6a253e" width="320" height="600">
 
 ### 주요 위젯 구성
 
@@ -95,6 +95,88 @@ OutlineInputBorder 를 사용하면 전체 테두리가 표시된다.
 
 ## 4. Form 위젯
 <aside>
-💡 Form 위젯은 사용자가 입력한 데이터를 검증하고 저장하는 기능을 제공하는 위젯이다. 주로 여러 개의 입력 필드(TextFormField)를 그룹화하고, 폼 검증과 제출을 관리하는 데 사용된다.
+💡 Form 위젯은 사용자가 입력한 데이터를 저장하고 유효성 검사를 하는 기능을 제공하는 위젯이다. 주로 여러 개의 입력 필드(TextFormField)를 그룹화하고, 폼 검증과 제출을 관리하는 데 사용된다. 즉 Form 위젯 안에 TextFormField 를 여러개  추가하여 사용자 입력을 받고 입력 받은 데이터를 한 번에 전송할 수 있다.
+
+Form 위젯의 주요 속성은 다음과 같다.
+1. key: 폼의 상태를 추적하기 위해 사용되는 키. 보통 GlobalKey<FormState>와 함께 사용된다.
+2. child: 폼의 자식 위젯을 정의한다. 보통 여러 TextFormField나 커스텀 입력 필드 위젯들이 포함된다.
+3. autovalidateMode: 폼 필드의 유효성 검사를 자동으로 수행하는 모드를 지정한다.
+
+Form 위젯의 주요 메서드는 다음과 같다.
+
+1. validate: 폼의 모든 필드를 유효성 검사합니다. 모든 필드가 유효하면 true, 그렇지 않으면 false를 반환합니다.
+ex) if (_formKey.currentState!.validate()) {}
+
+2. save: 폼의 모든 필드에 연결된 onSaved 콜백을 호출하여 폼 데이터를 저장합니다.
+ex) _formKey.currentState!.save();
+
+3. reset: 폼의 모든 필드를 초기 상태로 재설정합니다.
+ex) _formKey.currentState!.reset();
+
+
 </aside>
 <br>
+
+![alt text](image-11.png)
+
+GlobalKey<FormState>는 Form의 상태를 관리하는 데 사용된다. 이를 통해 Form의 상태를 검증하고, Form의 내용을 초기화하거나 저장하는 작업을 수행할 수 있다.
+
+
+![alt text](image-12.png)
+
+Form 위젯 내부에 자식 위젯으로 TextFormField 를 포함시킨다. Form 위젯의 key 속성으로 GlobalKey를 전달하여 폼 상태를 추적할 수 있다. 
+
+## 5. TextButton 위젯
+<aside>
+💡 TextButton 위젯은 버튼 중 하나로, 주로 텍스트로만 이루어진 버튼을 만드는 데 사용된다. 버튼의 스타일, 동작, 그리고 레이아웃을 커스터마이징할 수 있다. 
+
+TextButton 위젯의 주요 속성은 다음과 같다.
+1. onPressed: 버튼이 눌렸을 때 호출되는 콜백 함수. null로 설정하면 버튼이 비활성화된다.
+2. child: 버튼 안에 표시될 위젯. 보통 Text 위젯이 사용되지만, 다른 위젯도 가능하다.
+3. style: 버튼의 스타일을 지정한다. TextButton.styleFrom 또는 ButtonStyle을 사용하여 스타일을 설정할 수 있다.
+</aside>
+<br>
+
+
+![alt text](image-13.png)
+
+
+![alt text](image-14.png)
+
+![alt text](image-15.png)
+
+버튼을 누르면 onPressed 함수가 호출되면서 내부가 실행된다.
+
+## 6. Navigator 위젯
+<aside>
+💡  Navigator는 화면 간의 전환 및 네비게이션을 관리하는 역할을 한다. 앱 내에서 페이지를 추가하거나 제거하고, 그 과정에서 애니메이션을 추가하는 등 다양한 기능을 제공한다. Navigator는 스택(stack) 구조를 사용하여 화면을 관리하며, 각 화면은 스택의 하나의 항목(entry)으로 간주한다.
+
+<br>
+Navigator는 위젯의 주요 메서드는 다음과 같다.
+
+1. push: 새로운 화면을 스택에 추가하고 전환한다.
+2. pop: 현재 화면을 스택에서 제거하고 이전 화면으로 돌아간다.
+3. pushReplacement: 현재 화면을 새로운 화면으로 교체한다.
+4. pushNamed: 이름으로 정의된 경로를 통해 새로운 화면으로 전환합니다. 이는 주로 라우팅을 사용할 때 유용하다.
+5. popUntil: 특정 조건이 충족될 때까지 화면을 스택에서 제거한다.
+6. canPop: 스택에 이전 화면이 있는지 확인한다.
+
+</aside>
+<br>
+
+![alt text](image-16.png)
+
+TextButton을 누르면 Navigator.pushNamed 메서드에 의해 라우터에서 지정한 /home 으로 페이지 이동을 한다.
+
+![alt text](image-17.png)
+
+TextFormField 에서 validator 을 활용해 값이 없을 때의 유효성 조건을 설정한다. 그리고 Form위젯의 validate 를 활용해 유효성 검사를 한다.
+
+![alt text](Screenshot_31.png)
+
+TextFormField 에 빈 값을 넣었을 때 오류 메세지가 뜬다.
+
+
+![alt text](Screenshot_32.png)
+
+값이 입력된 상태에서 버튼을 누르면 페이지 전환이 된다.

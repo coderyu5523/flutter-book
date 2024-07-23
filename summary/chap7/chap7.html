@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>chap7.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="chapter-07-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%95%B1-%EB%A7%8C%EB%93%A4%EA%B8%B0">Chapter 07 로그인 앱 만들기</h1>
+<h3 id="%EC%99%84%EC%84%B1-%ED%99%94%EB%A9%B4">완성 화면</h3>
+<img src="https://github.com/user-attachments/assets/4d9aee6b-757f-4982-8475-7fae805eaebf" width="320" height="600">
+<img src="https://github.com/user-attachments/assets/b54bacb2-1978-4139-81b6-8e950f6a253e" width="320" height="600">
+<h3 id="%EC%A3%BC%EC%9A%94-%EC%9C%84%EC%A0%AF-%EA%B5%AC%EC%84%B1">주요 위젯 구성</h3>
+<p><img src="image.png" alt="alt text"></p>
+<h2 id="1-route-%EB%A7%8C%EB%93%A4%EA%B8%B0">1. Route 만들기</h2>
+<aside>
+💡 Route는 앱 내에서 페이지 전환을 관리하는 객체를 의미한다. Route는 새로운 화면을 표시할 때 사용되며, Navigator를 통해 관리된다. 이를 통해 애니메이션, 상태 관리 및 사용자 경험을 제어할 수 있다.
+<br>
+이름은 규칙에 따라 경로와 유사한 구조를 사용한다. 이런 방식을 네이게이터 경로 사용법이라고 한다.
+</aside>
+<br>
+<p><img src="image-1.png" alt="alt text"></p>
+<p>경로의 이름을 설정한다. initialRoute 를 사용하면 기본 경로를 설정할 수 있다.</p>
+<h2 id="2-svg-%ED%8C%8C%EC%9D%BC-%EB%84%A3%EA%B8%B0">2. SVG 파일 넣기</h2>
+<aside>
+💡 SVG(Scalable Vector Graphics)는 XML 기반의 파일 포맷으로, 벡터 그래픽을 표현하는 데 사용된다. 벡터 그래픽은 픽셀 단위가 아닌 수학적 좌표와 기하학적 도형으로 이미지나 그래픽을 정의하기 때문에, 크기 조절을 하더라도 해상도 저하 없이 선명하게 유지된다.
+<br>
+플러터에서 SVG 파일을 사용하기 위해 flutter_svg 라이브러리 설치가 필요하다.
+<br>
+flutter_svg 라이브러리의 SvgPicture 위젯을 사용하여 SVG 파일을 화면에 표시할 수 있다. SvgPicture는 여러 가지 생성자를 제공하지만, 주로 asset과 network 생성자가 많이 사용된다.
+<ol>
+<li>asset: 로컬 자산에서 SVG 파일을 로드한다.</li>
+<li>network: 네트워크에서 SVG 파일을 로드한다.</li>
+<li>file: 파일 시스템에서 SVG 파일을 로드한다.</li>
+<li>string: 문자열 형식의 SVG 데이터를 로드한다.</li>
+<li>width, height: SVG 이미지의 너비와 높이를 설정한다.</li>
+<li>color: SVG 이미지의 색상을 변경한다.</li>
+<li>fit: BoxFit 속성을 사용하여 SVG 이미지의 크기와 위치를 조정한다.</li>
+</ol>
+</aside>
+<br>
+<p>https://pub.dev/packages/flutter_svg</p>
+<p><img src="image-2.png" alt="alt text"></p>
+<p><img src="image-3.png" alt="alt text"></p>
+<p>pubspec.yaml 에서 라이브러리를 등록 후 pub get 을 한다.</p>
+<p><img src="image-4.png" alt="alt text"></p>
+<p>assets 폴더에 있는 logo.svg 파일을 출력한다.</p>
+<p><img src="image-5.png" alt="alt text"></p>
+<h2 id="3-textformfield-%EC%9C%84%EC%A0%AF">3. TextFormField 위젯</h2>
+<aside>
+💡 TextFormField는 Flutter에서 폼(Form) 위젯을 만들기 위한 텍스트 입력 필드이다. validator 속성을 사용하여 입력값을 검증할 수 있다.
+<br>
+주요 속성은 다음과 같다.
+<ol>
+<li>controller: TextEditingController를 통해 텍스트 필드의 값을 제어하고 접근할 수 있다.</li>
+<li>initialValue: 필드의 초기값을 설정한다.</li>
+<li>decoration: InputDecoration을 사용하여 입력 필드의 외형을 꾸밀 수 있다.</li>
+<li>validator: 입력값을 검증하는 함수</li>
+<li>onSaved: 폼이 저장될 때 호출되는 함수</li>
+<li>keyboardType: 입력할 때 사용하는 키보드 타입을 설정한다.</li>
+<li>obscureText: 비밀번호 입력 필드와 같이 텍스트를 숨긴다.</li>
+</ol>
+</aside>
+<br>
+<p><img src="image-8.png" alt="alt text"></p>
+<p><img src="image-9.png" alt="alt text"></p>
+<p>UnderlineInputBorder 를 사용하면 밑줄만 표시할 수 있다.</p>
+<p><img src="image-10.png" alt="alt text"></p>
+<p><img src="image-7.png" alt="alt text"></p>
+<p>OutlineInputBorder 를 사용하면 전체 테두리가 표시된다.</p>
+<p><img src="image-6.png" alt="alt text"></p>
+<p>이벤트 발생시의 디자인을 설정할 수도 있다.</p>
+<h2 id="4-form-%EC%9C%84%EC%A0%AF">4. Form 위젯</h2>
+<aside>
+💡 Form 위젯은 사용자가 입력한 데이터를 저장하고 유효성 검사를 하는 기능을 제공하는 위젯이다. 주로 여러 개의 입력 필드(TextFormField)를 그룹화하고, 폼 검증과 제출을 관리하는 데 사용된다. 즉 Form 위젯 안에 TextFormField 를 여러개  추가하여 사용자 입력을 받고 입력 받은 데이터를 한 번에 전송할 수 있다.
+<p>Form 위젯의 주요 속성은 다음과 같다.</p>
+<ol>
+<li>key: 폼의 상태를 추적하기 위해 사용되는 키. 보통 GlobalKey<FormState>와 함께 사용된다.</li>
+<li>child: 폼의 자식 위젯을 정의한다. 보통 여러 TextFormField나 커스텀 입력 필드 위젯들이 포함된다.</li>
+<li>autovalidateMode: 폼 필드의 유효성 검사를 자동으로 수행하는 모드를 지정한다.</li>
+</ol>
+<p>Form 위젯의 주요 메서드는 다음과 같다.</p>
+<ol>
+<li>
+<p>validate: 폼의 모든 필드를 유효성 검사합니다. 모든 필드가 유효하면 true, 그렇지 않으면 false를 반환합니다.
+ex) if (_formKey.currentState!.validate()) {}</p>
+</li>
+<li>
+<p>save: 폼의 모든 필드에 연결된 onSaved 콜백을 호출하여 폼 데이터를 저장합니다.
+ex) _formKey.currentState!.save();</p>
+</li>
+<li>
+<p>reset: 폼의 모든 필드를 초기 상태로 재설정합니다.
+ex) _formKey.currentState!.reset();</p>
+</li>
+</ol>
+</aside>
+<br>
+<p><img src="image-11.png" alt="alt text"></p>
+<p>GlobalKey<FormState>는 Form의 상태를 관리하는 데 사용된다. 이를 통해 Form의 상태를 검증하고, Form의 내용을 초기화하거나 저장하는 작업을 수행할 수 있다.</p>
+<p><img src="image-12.png" alt="alt text"></p>
+<p>Form 위젯 내부에 자식 위젯으로 TextFormField 를 포함시킨다. Form 위젯의 key 속성으로 GlobalKey를 전달하여 폼 상태를 추적할 수 있다.</p>
+<h2 id="5-textbutton-%EC%9C%84%EC%A0%AF">5. TextButton 위젯</h2>
+<aside>
+💡 TextButton 위젯은 버튼 중 하나로, 주로 텍스트로만 이루어진 버튼을 만드는 데 사용된다. 버튼의 스타일, 동작, 그리고 레이아웃을 커스터마이징할 수 있다. 
+<p>TextButton 위젯의 주요 속성은 다음과 같다.</p>
+<ol>
+<li>onPressed: 버튼이 눌렸을 때 호출되는 콜백 함수. null로 설정하면 버튼이 비활성화된다.</li>
+<li>child: 버튼 안에 표시될 위젯. 보통 Text 위젯이 사용되지만, 다른 위젯도 가능하다.</li>
+<li>style: 버튼의 스타일을 지정한다. TextButton.styleFrom 또는 ButtonStyle을 사용하여 스타일을 설정할 수 있다.</li>
+</ol>
+</aside>
+<br>
+<p><img src="image-13.png" alt="alt text"></p>
+<p><img src="image-14.png" alt="alt text"></p>
+<p><img src="image-15.png" alt="alt text"></p>
+<p>버튼을 누르면 onPressed 함수가 호출되면서 내부가 실행된다.</p>
+<h2 id="6-navigator-%EC%9C%84%EC%A0%AF">6. Navigator 위젯</h2>
+<aside>
+💡  Navigator는 화면 간의 전환 및 네비게이션을 관리하는 역할을 한다. 앱 내에서 페이지를 추가하거나 제거하고, 그 과정에서 애니메이션을 추가하는 등 다양한 기능을 제공한다. Navigator는 스택(stack) 구조를 사용하여 화면을 관리하며, 각 화면은 스택의 하나의 항목(entry)으로 간주한다.
+<br>
+Navigator는 위젯의 주요 메서드는 다음과 같다.
+<ol>
+<li>push: 새로운 화면을 스택에 추가하고 전환한다.</li>
+<li>pop: 현재 화면을 스택에서 제거하고 이전 화면으로 돌아간다.</li>
+<li>pushReplacement: 현재 화면을 새로운 화면으로 교체한다.</li>
+<li>pushNamed: 이름으로 정의된 경로를 통해 새로운 화면으로 전환합니다. 이는 주로 라우팅을 사용할 때 유용하다.</li>
+<li>popUntil: 특정 조건이 충족될 때까지 화면을 스택에서 제거한다.</li>
+<li>canPop: 스택에 이전 화면이 있는지 확인한다.</li>
+</ol>
+</aside>
+<br>
+<p><img src="image-16.png" alt="alt text"></p>
+<p>TextButton을 누르면 Navigator.pushNamed 메서드에 의해 라우터에서 지정한 /home 으로 페이지 이동을 한다.</p>
+<p><img src="image-17.png" alt="alt text"></p>
+<p>TextFormField 에서 validator 을 활용해 값이 없을 때의 유효성 조건을 설정한다. 그리고 Form위젯의 validate 를 활용해 유효성 검사를 한다.</p>
+<p><img src="Screenshot_31.png" alt="alt text"></p>
+<p>TextFormField 에 빈 값을 넣었을 때 오류 메세지가 뜬다.</p>
+<p><img src="Screenshot_32.png" alt="alt text"></p>
+<p>값이 입력된 상태에서 버튼을 누르면 페이지 전환이 된다.</p>
+
+</body>
+</html>
