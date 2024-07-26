@@ -76,3 +76,50 @@ StatefulWidget의 createState 메서드는 State 객체를 생성하고 반환�
 ![alt text](Screenshot_4.png)
 
 ![alt text](Screenshot_5.png)
+
+## 2. 위젯 트리(widget tree)
+<aside>
+💡 위젯 트리는 우리가 코드로 작성한 위젯들을 트리 형식으로 표현한 것이다. 위젯 트리는 불변의 특성을 가지고 있어 트리가 변경되면 파기됐다가 다시 재생성 된다.
+</aside>
+<br>
+
+![alt text](Screenshot_6.png)
+
+만약 이런 화면이 있다면 위젯트리는 다음과 같다.
+
+![alt text](image-8.png)
+
+Stateful 위젯의 상태가 바뀌면 Text 의 낮 -> 밤으로 상태가 변경되기를 기대한다.
+
+현재의 위젯 트리에서는 앱이 실행되면 StatefulWidget의 build() 함수가 호출 되면서 1, 2, 3, 4 순으로 화면이 그려진다.
+단점은 Text 위젯을 다시 그리기 위해 모든 위젯이 다시 그려지는 일이 발생한다. 
+
+## 3. BuildContext 분리
+
+<aside>
+💡 BuildContext는 위젯 트리 내에서 위젯의 위치를 나타내는 클래스이다. build의 뜻은 '건물을 다시 짓다' 라는 뜻이고, context 는 문맥이라는 뜻이다. 뜻을 풀이하면 건물을 짓기 위해 전후 흐름을 알고 있는 클래스라는 의미이다.
+위젯트리에서 build() 함수가 실행되는 시점을 변경하면 Text 위젯만 다시 그릴 수 있다.
+</aside>
+<br>
+
+![alt text](image-6.png)
+
+그림과 같이 부모 위젯은 stateless 로 변경한 후 Text 위젯 부분을 Stateful 로 설정한다. 이렇게 변경이 필요한 부분을 별도 컴포넌트로 분리하면 새로운 BuildContext가 생성되고, 원하는 Text 부분만 그림을 그릴 수 있다.
+
+## 4. Stack 위젯
+<aside>
+💡 Stack 위젯은 여러 위젯을 서로 겹쳐서 배치할 수 있는 위젯이다. 각 위젯은 Stack 내에서 쌓여 올라가는 방식으로 배치되며, 위젯을 서로 겹쳐서 배치할 때 유용하게 사용할 수 있다. Stack 위젯은 다양한 레이아웃을 구현할 때, 특히 복잡한 UI를 구성할 때 매우 유용하다.
+
+<br>
+Stack 위젯의 주요 속성은 다음과 같다.
+
+1. children: Stack 위젯 내부에 자식위젯을 포함한다. 첫 번째 위젯이 맨 아래에 위치하고, 마지막 위젯이 맨 위에 위치합니다.
+2. alignment: Stack 내에서 자식 위젯들을 어떻게 정렬할지 결정합니다. 기본값은 AlignmentDirectional.topStart입니다.
+3. fit: Stack의 크기가 자식 위젯들에 의해 결정되는 방식을 정의합니다. StackFit.loose가 기본값입니다.
+4. overflow: Stack의 경계를 넘어가는 자식 위젯을 어떻게 처리할지 결정합니다. 플러터 2.0 이후에는 clipBehavior로 대체되었습니다.
+</aside>
+<br>
+
+![alt text](image-7.png)
+
+
