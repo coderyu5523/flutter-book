@@ -113,13 +113,86 @@ Stateful 위젯의 상태가 바뀌면 Text 의 낮 -> 밤으로 상태가 변�
 <br>
 Stack 위젯의 주요 속성은 다음과 같다.
 
-1. children: Stack 위젯 내부에 자식위젯을 포함한다. 첫 번째 위젯이 맨 아래에 위치하고, 마지막 위젯이 맨 위에 위치합니다.
-2. alignment: Stack 내에서 자식 위젯들을 어떻게 정렬할지 결정합니다. 기본값은 AlignmentDirectional.topStart입니다.
-3. fit: Stack의 크기가 자식 위젯들에 의해 결정되는 방식을 정의합니다. StackFit.loose가 기본값입니다.
-4. overflow: Stack의 경계를 넘어가는 자식 위젯을 어떻게 처리할지 결정합니다. 플러터 2.0 이후에는 clipBehavior로 대체되었습니다.
+1. children: Stack 위젯 내부에 자식위젯을 포함한다. 첫 번째 위젯이 맨 아래에 위치하고, 마지막 위젯이 맨 위에 한다.
+2. alignment: Stack 내에서 자식 위젯들을 어떻게 정렬할지 결정한다. 기본값은 AlignmentDirectional.topStart 이다.
+3. fit: Stack의 크기가 자식 위젯들에 의해 결정되는 방식을 정의한다. StackFit.loose가 기본 값이다.
+4. overflow: Stack의 경계를 넘어가는 자식 위젯을 어떻게 처리할지 결정한다. 플러터 2.0 이후에는 clipBehavior로 대체되었다.
 </aside>
 <br>
 
+![alt text](image-9.png)
+
+Stack 위젯을 사용해 여러 개의 자식 위젯을 겹칠 수 있다.
+
+
 ![alt text](image-7.png)
 
+## 5. Positioned 위젯
 
+<aside>
+💡 Positioned 위젯은 Stack 위젯 내에서 자식 위젯의 위치를 지정할 때 사용하는 위젯이다. Stack 위젯은 자식 위젯들을 겹쳐서 배치할 수 있는 컨테이너 역할을 하며, Positioned 위젯을 사용하면 특정 위치에 자식 위젯을 배치할 수 있다.
+
+<br>
+Positioned 위젯의 속성은 다음과 같다.
+
+1. top: 부모 위젯의 상단에서 자식 위젯의 상단까지의 거리. double 타입의 값을 가지며, 지정하지 않으면 기본값은 null이다. 이 속성을 설정하면 자식 위젯이 상단으로부터 떨어진 위치에 배치한다.
+
+2. bottom: 부모 위젯의 하단에서 자식 위젯의 하단까지의 거리. double 타입의 값을 가지며, 지정하지 않으면 기본값은 null이다. 이 속성을 설정하면 자식 위젯이 하단으로부터 떨어진 위치에 배치한다.
+
+3. left: 부모 위젯의 왼쪽에서 자식 위젯의 왼쪽까지의 거리. double 타입의 값을 가지며, 지정하지 않으면 기본값은 null이다. 이 속성을 설정하면 자식 위젯이 왼쪽으로부터 떨어진 위치에 배치한다.
+
+4. right: 부모 위젯의 오른쪽에서 자식 위젯의 오른쪽까지의 거리. double 타입의 값을 가지며, 지정하지 않으면 기본값은 null이다. 이 속성을 설정하면 자식 위젯이 오른쪽으로부터 떨어진 위치에 배치한다.
+
+5. width: 자식 위젯의 너비를 지정한다. double 타입의 값을 가지며, 기본적으로 null이면 자식 위젯의 기본 너비를 사용한다.
+
+6. height: 자식 위젯의 높이를 지정한다. double 타입의 값을 가지며, 기본적으로 null이면 자식 위젯의 기본 높이를 사용한다.
+</aside>
+<br>
+
+![alt text](image-10.png)
+
+![alt text](image-11.png)
+
+Positioned 위젯을 사용하면 Stack 의 자식 위젯들의 위치를 조정할 수 있다.
+
+## 6. ClipOval 위젯
+<aside>
+💡 ClipOval 위젯은 특정 영역을 타원형 또는 원형으로 자르기 위해 사용되는 위젯이다. 자식 위젯을 원형 또는 타원형의 경계 안에 가두어 보여주며, 이때 자식 위젯이 클립되어 경계 밖으로 벗어나지 않도록 한다.
+</aside>
+<br>
+
+![alt text](image-12.png)
+
+Container 의 decoration 속성을 사용하지 않아도 Container 위젯을 원형으로 만들 수 있다.
+
+## 7. CupertinoAlertDialog
+
+<aside>
+💡 CupertinoAlertDialog는 iOS 스타일의 알림 대화 상자를 생성하는 데 사용되는 함수이다. Cupertino 디자인 언어를 따르며, 일반적으로 iOS 애플리케이션에서 볼 수 있는 모양과 느낌을 제공한다. 플르터는 Skia 엔진 덕분에 MaterialApp 환경에서도 IOS 디자인을 그릴 수 있다.
+
+<br>
+CupertinoAlertDialog의 속성은 다음과 같다.
+
+1. title: 대화 상자의 제목을 표시. 주로 Text 위젯을 사용하여 제목을 설정한다.
+
+2. content: 대화 상자의 본문 내용을 표시. 여기에는 메시지나 설명 텍스트가 들어간다. Text 위젯을 사용하거나 다른 위젯을 조합할 수 있다.
+
+3. actions: 대화 상자의 하단에 표시되는 버튼 목록이다. 각 버튼은 CupertinoDialogAction 위젯으로 정의되며, 사용자가 선택할 수 있는 다양한 옵션을 제공한다.
+
+4. scrollController: 대화 상자 내용이 길어질 때 스크롤을 제어하는 데 사용되는 컨트롤러이다. ScrollController를 사용하여 스크롤 동작을 세밀하게 제어할 수 있다.
+
+5. actionScrollController: 액션(버튼) 영역에 대한 스크롤을 제어하는 컨트롤러이다.
+</aside>
+<br>
+
+![alt text](image-13.png)
+
+![alt text](Screenshot_1.png)
+
+CupertinoAlertDialog 위젯이 팝업되면 ShoppingCartPage 위젯 위에 팝업이 된다.
+
+![alt text](image-16.png)
+
+따라서 팝업을 사라지게 하려면 Navigator.pop() 함수를 이용해 제거해야 한다.
+
+![alt text](image-15.png)
