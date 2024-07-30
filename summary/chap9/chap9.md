@@ -8,7 +8,6 @@
 <img src="https://github.com/user-attachments/assets/7814c098-123b-4624-a679-7a006c70438a" width="290" height="400">
 
 
-
 ## 1. double.infinity
 <aside>
 💡 double.infinity는 Dart 언어에서 사용되는 특수한 상수로, 양의 무한대를 의미한다. Flutter에서 double.infinity는 주로 위젯의 크기를 부모 위젯의 크기에 맞추기 위해 사용된다. 예를 들어, 특정 위젯의 너비나 높이를 double.infinity로 설정하면, 해당 위젯은 가능한 한 최대 크기로 확장된다. 이는 부모 위젯의 제약에 따라 크기가 결정되며, 주어진 공간을 모두 사용하고자 할 때 유용하다.
@@ -48,7 +47,40 @@ MediaQuery.of(context).size 를 통해 앱의 가로 길이를 디바이스의 �
 
 ![alt text](image-6.png)
 
-## 3. Align 위젯
+## 3. 선택적 매개변수(Named Parameter)
+<aside>
+💡 선택적 매개변수(Named Parameter)는 Dart의 문법으로, 생성자는 중괄호 {} 를 사용해 매개변수를 받을 수 있다. 함수 호출 시 매개변수의 이름을 명시해서 값을 전달할 수 있다. 명명된 매개변수는 기본적으로 선택적이지만, 필수로 만들고 싶다면 required 키워드를 사용할 수 있다.
+</aside>
+<br>
+
+![alt text](image-14.png)
+
+클래스의 생성자에 중괄호를 표기한다. 꼭 받아야할 변수는 required, 받기를 선택할 수 있는 변수는 변수 타입에 ? 를 붙여 nullable(null이 될 수 있음) 상태로 만든다.
+
+![alt text](image-15.png)
+
+선택적 매개변수를 사용해면 부모 위젯에서 변수를 전달받을 때 키 : 값의 형태로 전달받을 수 있고, 원하는 값을 선택적으로 받을 수 있어 편리하다.
+
+![alt text](image-16.png)
+
+<aside>
+💡 이렇게 부모 위젯에서 자식 위젯으로 변수를 전달받는 방식으로 구성하게 되면, 공통된 컴포넌트를 만든 후 컴포넌트에 변수만 전달하면 되기 때문에 코드가 더욱 간결해진다.
+</aside>
+<br>
+
+![alt text](image-17.png)
+
+공통 formField를 만든 후 변수를 선택적 매개변수로 받는다.
+
+![alt text](image-18.png)
+
+부모 위젯은 같은 컴포넌트에 변수만 다른 값을 전달한다.
+
+![alt text](image-19.png)
+
+하나의 컴포넌트를 활용해 화면을 구성할 수 있다.
+
+## 4. Align 위젯
 <aside>
 💡 Align 위젯은 Flutter에서 자식 위젯의 정렬을 조정하는 데 사용된다. Align 위젯은 alignment 속성을 통해 자식 위젯이 부모 위젯 내에서 어디에 위치할지를 결정한다.
 
@@ -91,7 +123,7 @@ Alignment 의 기본 값으로 배치할 수 있다.
 
 <img src="https://github.com/user-attachments/assets/a0a5b412-88f8-4c10-9784-939a3a54813a" width="300" height="450">
 
-## 4. Wrap 위젯
+## 5. Wrap 위젯
 <aside>
 💡 Wrap 위젯은 Flutter에서 자식 위젯들을 자동으로 다음 줄로 넘겨 배치하는 데 사용되는 레이아웃 위젯이다. 이는 자식 위젯들이 수평 또는 수직 방향으로 오버플로우할 때 유용하며, 그리드 레이아웃과 유사한 방식으로 요소들을 배치할 수 있다.
 
