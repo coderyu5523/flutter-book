@@ -397,7 +397,27 @@ code {
 <p>MediaQuery.of(context).size 를 통해 앱의 가로 길이를 디바이스의 가로 길이의 0.7 비율로 설정한다.</p>
 <p>이는 다양한 화면 크기에서 동일한 비율로 UI 요소를 표시하여 일관된 사용자 경험을 제공하기 위함이다. 예를 들어, 큰 화면에서는 UI 요소가 너무 넓어지지 않도록 하고, 작은 화면에서는 충분한 너비를 확보하도록 조정할 수 있다.</p>
 <p><img src="image-6.png" alt="alt text"></p>
-<h2 id="3-align-%EC%9C%84%EC%A0%AF">3. Align 위젯</h2>
+<h2 id="3-%EC%84%A0%ED%83%9D%EC%A0%81-%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98named-parameter">3. 선택적 매개변수(Named Parameter)</h2>
+<aside>
+💡 선택적 매개변수(Named Parameter)는 Dart의 문법으로, 생성자는 중괄호 {} 를 사용해 매개변수를 받을 수 있다. 함수 호출 시 매개변수의 이름을 명시해서 값을 전달할 수 있다. 명명된 매개변수는 기본적으로 선택적이지만, 필수로 만들고 싶다면 required 키워드를 사용할 수 있다.
+</aside>
+<br>
+<p><img src="image-14.png" alt="alt text"></p>
+<p>클래스의 생성자에 중괄호를 표기한다. 꼭 받아야할 변수는 required, 받기를 선택할 수 있는 변수는 변수 타입에 ? 를 붙여 nullable(null이 될 수 있음) 상태로 만든다.</p>
+<p><img src="image-15.png" alt="alt text"></p>
+<p>선택적 매개변수를 사용해면 부모 위젯에서 변수를 전달받을 때 키 : 값의 형태로 전달받을 수 있고, 원하는 값을 선택적으로 받을 수 있어 편리하다.</p>
+<p><img src="image-16.png" alt="alt text"></p>
+<aside>
+💡 이렇게 부모 위젯에서 자식 위젯으로 변수를 전달받는 방식으로 구성하게 되면, 공통된 컴포넌트를 만든 후 컴포넌트에 변수만 전달하면 되기 때문에 코드가 더욱 간결해진다.
+</aside>
+<br>
+<p><img src="image-17.png" alt="alt text"></p>
+<p>공통 formField를 만든 후 변수를 선택적 매개변수로 받는다.</p>
+<p><img src="image-18.png" alt="alt text"></p>
+<p>부모 위젯은 같은 컴포넌트에 변수만 다른 값을 전달한다.</p>
+<p><img src="image-19.png" alt="alt text"></p>
+<p>하나의 컴포넌트를 활용해 화면을 구성할 수 있다.</p>
+<h2 id="4-align-%EC%9C%84%EC%A0%AF">4. Align 위젯</h2>
 <aside>
 💡 Align 위젯은 Flutter에서 자식 위젯의 정렬을 조정하는 데 사용된다. Align 위젯은 alignment 속성을 통해 자식 위젯이 부모 위젯 내에서 어디에 위치할지를 결정한다.
 <br>
@@ -428,7 +448,7 @@ Align 위젯의 주요 속성은 다음과 같다.
 <br>
 <p>사이즈가 클 때는 부모 위젯의 왼쪽에 위치하지만 사이즈가 줄어들면 부모 위젯의 가운데에 위치하도록 한다.</p>
 <img src="https://github.com/user-attachments/assets/a0a5b412-88f8-4c10-9784-939a3a54813a" width="300" height="450">
-<h2 id="4-wrap-%EC%9C%84%EC%A0%AF">4. Wrap 위젯</h2>
+<h2 id="5-wrap-%EC%9C%84%EC%A0%AF">5. Wrap 위젯</h2>
 <aside>
 💡 Wrap 위젯은 Flutter에서 자식 위젯들을 자동으로 다음 줄로 넘겨 배치하는 데 사용되는 레이아웃 위젯이다. 이는 자식 위젯들이 수평 또는 수직 방향으로 오버플로우할 때 유용하며, 그리드 레이아웃과 유사한 방식으로 요소들을 배치할 수 있다.
 <p>Wrap 위젯은 Row와 Column의 기능을 결합한 형태로 볼 수 있으며, 자식 요소들이 지정된 방향으로 가득 차면 다음 줄이나 열로 이동하여 배치된다.</p>
