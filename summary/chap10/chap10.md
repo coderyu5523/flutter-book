@@ -146,3 +146,47 @@ Card 위젯을 사용하면 원하는  콘텐츠를 깔끔하게 정리할 수 �
 </aside>
 <br>
 
+![alt text](image-13.png)
+
+<img src="https://github.com/user-attachments/assets/98286b43-5d66-43b6-84e7-7e2982ac75c8" width="200" height="350">
+
+
+app의 크기를 조절할 수 있다.
+
+## 6. Visibility 위젯
+<aside>
+💡 Visibility 위젯은 자식 위젯의 표시 여부를 제어하는 데 사용된다. 이 위젯을 통해 특정 위젯을 화면에 표시하거나 숨길 수 있으며, 숨긴 위젯의 공간을 유지할지 여부도 선택할 수 있다.
+
+<br>
+Visibility의 주요 속성은 다음과 같다.
+
+1. visible: true일 때 자식 위젯이 화면에 표시된다. false일 때 자식 위젯이 화면에서 숨겨지지만, 위젯의 공간은 그대로 유지됩니다.
+
+2. child: Visibility 위젯의 자식 위젯. visible 속성에 따라 이 위젯이 화면에 표시될지 결정된다.
+
+3. replacement: visible이 false일 때, child 대신에 표시될 위젯. 이 속성을 설정하지 않으면 child가 숨겨질 때 빈 공간이 남는다.
+
+4. maintainState: visible이 false일 때 자식 위젯의 상태를 유지할지 여부를 결정한다. true로 설정하면 자식 위젯이 비활성화되더라도 상태가 유지된다.
+
+5. maintainAnimation: visible이 false일 때도 애니메이션을 유지할지 결정한다. 자식 위젯이 애니메이션을 포함하는 경우 사용한다.
+
+6. maintainSize: visible이 false일 때도 자식 위젯의 크기를 유지할지 결정한다. 이 속성을 true로 설정하면, 자식 위젯이 보이지 않더라도 레이아웃에서의 크기를 유지한다.
+</aside>
+<br>
+
+![alt text](image-14.png)
+
+이미지 값이 null 이 아니면 visible 값이 true가 되어 이미지가 표시가 되고, null 이면 visible 값이 false가 되어서 이미지가 표시되지 않는다.
+
+![alt text](Screenshot_22.png)
+
+## 7. TextField 위젯
+<aside>
+💡 TextField 위젯은 사용자가 텍스트를 입력할 수 있는 기본적인 입력 위젯이다.
+
+TextFormField 위젯과 유사한 기능을 한다. 하지만 TextFormField는 유효성 검사가 가능한 반면,  TextField는 유효성 검사나 form 상태 관리 등의 기능은 없다. 따라서 간단한 텍스트를 입력하는 경우에 적합하다.
+
+
+</aside>
+<br>
+
