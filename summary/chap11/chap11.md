@@ -109,3 +109,21 @@ async 키워드를 사용하면 함수는 비동기적으로 실행된다. async
 AndroidManifest.xml 에 읽기 권한을 설정한다.
 
 
+![alt text](image-12.png)
+
+함수가 실행되면 갤러리에서 사진을 선택할 수 있도록 하고, 선택된 이미지를 화면에 출력할 수 있도록 한다.
+
+<img src="https://github.com/user-attachments/assets/32e45aa7-47d0-4656-a8c6-dfed806e8e26" width="200" height="350">
+<img src="https://github.com/user-attachments/assets/33165424-c3ac-4a7a-a40d-9d1f396d545c" width="200" height="350">
+
+<br>
+사진 아이콘을 누르면 디바이스에 저장된 사진이 뜬다.
+
+<br>
+
+![alt text](image-11.png)
+
+선택된 이미지가 있드면 이미지를 출력, 없으면 "사진 없음"을 출력하도록 한다.
+
+<img src="https://github.com/user-attachments/assets/15e8fe1d-bce8-419b-89aa-6251705278e6" width="200" height="350">
+
