@@ -74,7 +74,13 @@ WidgetRef는 ConsumerWidget의 build 메서드에서 전달되는 매개변수�
 
 ![alt text](image-6.png)
 
-todo 객체에 접근하기 위해 ref.read를 사용해 Provider 에 접근한다. ref.read 는 상태를 읽어오는 시점에 한 번만 접근하며, 이후 상태가 변경되더라도 다시 상태를 관찰하지 않는다.
+todo 객체에 접근하기 위해 ref.read를 사용해 Provider 에 접근한다. 
+
+<aside>
+ 💡ref.read 는 상태를 읽어오는 시점에 한 번만 접근하며, 이후 상태가 변경되더라도 다시 상태를 관찰하지 않는다.
+</aside>
+<br>
+
  
 ![alt text](image-7.png)
 
@@ -94,9 +100,46 @@ Provider 를 통해 접근한 todo 객체를 화면에 바인딩한다.
 
  ![alt text](image-9.png)
 
- FruitStore 클래스를 만든다. FruitStore 클래스는 StateNotifier를 상속받아 String 타입의 상태를 관리하는 상태 관리자이다.
+<aside>
+ 💡FruitStore 클래스를 만든다. FruitStore 클래스는 StateNotifier를 상속받아 String 타입의 상태를 관리하는 상태 관리자이다.
 
- 💡 state는 StateNotifier 클래스의 멤버로, 현재 상태를 나타내며, state가 변경될 때마다 구독 중인 모든 위젯에 상태 변경이 반영된다.
-
+  state는 StateNotifier 클래스의 멤버로, 현재 상태를 나타내며, state가 변경될 때마다 구독 중인 모든 위젯에 상태 변경이 반영된다.
 </aside>
 <br>
+
+![alt text](image-10.png)
+
+<aside>
+ 💡모델 클래스를 관리하기 위해 fruitProvider를 만든다. fruitProvider는 <FruitStore,String> 타입을 변수로 받으며, FruitStore는 StateNotifier를 상속한 상태 관리자, String은 모델 클래스의 타입이다.
+
+ fruitProvider가 호출되면 상태 관리자(FruitStore)가 상태(String)에 접근해 상태를 관리한다.
+</aside>
+<br>
+
+![alt text](image-11.png)
+
+
+위젯을 ConsumerWidget 으로 변경 후 ref 매개변수를 추가한다.
+
+![alt text](image-13.png)
+
+버튼을 선택하면 fruitProvider에 접근해 상태값을 바꾼다.
+
+<aside>
+ 💡StateNotifierProvider를 사용하여 상태를 관리할 때, ref.read를 통해 상태를 읽을 수 있지만, StateNotifier 인스턴스에 직접 접근하려면 .notifier를 사용해야 한다. .notifier를 통해 fruitStore에 접근한다.
+</aside>
+<br>
+
+
+![alt text](image-12.png)
+
+ref.watch를 활용해 fruitProvider에 접근, 상태를 구독한다.
+
+<aside>
+ 💡ref.watch는 프로바이더의 상태를 구독하고, 상태가 변경될 때마다 자동으로 리빌드(rebuild)하는 데 사용되는 메서드이다. 이를 통해 UI가 항상 최신 상태를 반영하도록 할 수 있다.
+</aside>
+<br>
+
+
+ <img src="https://github.com/user-attachments/assets/005c7139-8abc-4484-8e73-baa0b4f5f4e0" width="200" height="350">
+ <img src="https://github.com/user-attachments/assets/aa90f7f3-abdd-4d20-a99a-ecdb8dc34464" width="200" height="350">
